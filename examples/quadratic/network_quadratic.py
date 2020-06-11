@@ -4,14 +4,14 @@ from tensorflow import keras
 import pandas as pd
 import numpy as np
 
-train_df = pd.read_csv('./data/train.csv')
+train_df = pd.read_csv('C:/Users/wspic/Documents/GitHub/neural-nets/examples/quadratic/data/train.csv')
 np.random.shuffle(train_df.values)
 
 print(train_df.head())
 
 model = keras.Sequential([
-	keras.layers.Dense(32, input_shape=(2,), activation='relu'),
-	keras.layers.Dense(32, activation='relu'),
+	keras.layers.Dense(16, input_shape=(2,), activation='relu'),
+	keras.layers.Dense(16, activation='relu'),
 	keras.layers.Dense(2, activation='sigmoid')])
 
 model.compile(optimizer='adam', 
@@ -20,9 +20,9 @@ model.compile(optimizer='adam',
 
 x = np.column_stack((train_df.x.values, train_df.y.values))
 
-model.fit(x, train_df.color.values, batch_size=4, epochs=10)
+model.fit(x, train_df.color.values, batch_size=4, epochs=5)
 
-test_df = pd.read_csv('./data/test.csv')
+test_df = pd.read_csv('C:/Users/wspic/Documents/GitHub/neural-nets/examples/quadratic/data/train.csv')
 test_x = np.column_stack((test_df.x.values, test_df.y.values))
 
 print("EVALUATION")
